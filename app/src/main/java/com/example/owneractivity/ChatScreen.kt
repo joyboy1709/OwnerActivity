@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.collectLatest
 
-@Composable
+/*@Composable
 fun ChatScreen(role: String, chatViewModel: ChatViewModel, onSendMessage: (String) -> Unit) {
     var message by remember { mutableStateOf("") }
     val messages by chatViewModel.messages.collectAsState()
@@ -34,4 +34,31 @@ fun ChatScreen(role: String, chatViewModel: ChatViewModel, onSendMessage: (Strin
             }
         }
     }
+}*/
+
+@Composable
+fun ChatScreen(role: String, chatViewModel: ChatViewModel, onSendMessage: (String) -> Unit) {
+    var message by remember { mutableStateOf("") }
+    val messages by chatViewModel.messages.collectAsState()
+
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text("$role - Chat", style = MaterialTheme.typography.headlineSmall)
+        LazyColumn(modifier = Modifier.weight(1f)) {
+            items(messages) { msg ->
+                Text(msg, modifier = Modifier.padding(4.dp))
+            }
+        }
+        Row {
+            TextField(value = message, onValueChange = { message = it })
+            Button(onClick = {
+                if (message.isNotEmpty()) {
+                    onSendMessage(message)
+                    message = ""
+                }
+            }) {
+                Text("Enviar")
+            }
+        }
+    }
 }
+

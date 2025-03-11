@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 class OwnerActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val chatViewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+        val chatViewModel = (application as ChatApp).chatViewModel
 
         setContent {
             ChatScreen("Propietario", chatViewModel) { message ->
-                sendMessageToCaretaker(message)
+                chatViewModel.sendMessage("Propietario: $message")
             }
         }
     }
