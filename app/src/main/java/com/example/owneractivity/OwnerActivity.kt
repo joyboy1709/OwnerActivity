@@ -14,6 +14,7 @@ class OwnerActivity : ComponentActivity() {
         setContent {
             ChatScreen("Propietario", chatViewModel) { message ->
                 chatViewModel.sendMessage("Propietario: $message")
+                sendMessageToCaretaker(message)
             }
         }
     }

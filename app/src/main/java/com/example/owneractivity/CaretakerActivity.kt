@@ -23,6 +23,7 @@ class CaretakerActivity : ComponentActivity() {
         setContent {
             ChatScreen("Cuidador", chatViewModel) { message ->
                 chatViewModel.sendMessage("Cuidador: $message")
+                sendMessageToOwner(message)
             }
         }
     }

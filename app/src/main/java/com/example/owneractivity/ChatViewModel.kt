@@ -13,16 +13,26 @@ class ChatViewModel : ViewModel() {
     }
 }*/
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import androidx.lifecycle.ViewModel
 
-class ChatViewModel(application: Application) : AndroidViewModel(application) {
+
+/*class ChatViewModel(application: Application) : AndroidViewModel(application) {
     private val _messages = MutableStateFlow<List<String>>(emptyList())
     val messages = _messages.asStateFlow()
 
     fun sendMessage(message: String) {
         _messages.value = _messages.value + message
+    }
+}*/
+
+class ChatViewModel : ViewModel() {
+    private val _messages = MutableStateFlow<List<String>>(emptyList())
+    val messages = _messages.asStateFlow()
+
+    fun sendMessage(message: String) {
+        _messages.value = _messages.value + message // Agregar mensaje sin borrar historial
     }
 }
